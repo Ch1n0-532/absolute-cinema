@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Absolute Cinema</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-dark">
+    
+    
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Absolute Cinema</a>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="catalogo.html">Catálogo</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="registro.html">Nueva Reseña</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    
+    <header class="py-5 text-center bg-black text-white">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Propósito</h1> 
+            
+            <p class="lead">
+                El motivo de esta página web es simular una plataforma de películas
+                estilo "Letterboxd", sus principales funciones son: Revisar catálogo,
+                dejar una reseña y ver las sinopsis de las peliculas disponibles en el
+                catálogo. A medida que avance el curso se le irán sumando más cosas y eso.
+                "You got me, It's cinema."
+            </p>
+
+            <a class="btn btn-warning me-2" href="catalogo.html">Revisa nuestro catálogo</a>
+            <a class="btn btn-outline-light" href="registro.html">Dejar una reseña</a>
+        </div>
+    </header> 
+
+
+    <main class="container my-5">
+        <h2 class="text-white mb-4">Películas en tendencia</h2>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card bg-dark text-white border-secondary h-100">
+                    <img src="img/Spider-Man2002Poster.webp" class="card-img-top" alt="Poster Spiderman"> 
+                    <div class="card-body">
+                        <h5 class="card-title">Spiderman</h5>
+                        <p class="card-text">
+                            Peter Parker es un tímido estudiante de preparatoria, intelectualmente brillante pero poco hábil socialmente. Durante una visita a un laboratorio de genética de la Universidad de Columbia es...
+                        </p>
+                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalSpiderman">Ver Detalles</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card bg-dark text-white border-secondary h-100">
+                    <img src="img/Ponyo.jpg" class="card-img-top" alt="Poster Ponyo"> 
+                    <div class="card-body">
+                        <h5 class="card-title">Ponyo</h5>
+                        <p class="card-text">
+                            Durante una excursión prohibida para ver el mundo de la superficie, una princesa pez de colores conoce a un niño llamado Sosuke, quien le pone el nombre de Ponyo.
+                        </p>
+                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalPonyo">Ver Detalles</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card bg-dark text-white border-secondary h-100">
+                    <img src="img/El_conjuro.jpg" class="card-img-top" alt="Poster El Conjuro"> 
+                    <div class="card-body">
+                        <h5 class="card-title">El Conjuro</h5>
+                        <p class="card-text">
+                            A principios de los años 70, Ed y Lorraine Warren, reputados investigadores de fenómenos paranormales, se enfrentan a una entidad demoníaca al...
+                        </p>
+                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalElConjuro">Ver Detalles</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+
+    <div class="modal fade" id="modalSpiderman" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white border-secondary">
+                <div class="modal-header">
+                    <h5 class="modal-title">Spiderman (detalles)</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Sinopsis:</strong> Peter Parker es un tímido estudiante de preparatoria, intelectualmente brillante pero poco hábil socialmente. Durante una visita a un laboratorio de genética de la Universidad de Columbia es mordido por una araña genéticamente modificada. Esto provoca en él un cambio que le otorga poderes sobrehumanos arácnidos: fuerza proporcional a la de una araña, capacidad de adherirse a las paredes, capacidad para segregar y lanzar redes similares a las telarañas por las manos y un sentido arácnido que le advierte de los peligros que le pueden acechar.</p>
+                    <p><strong>Director:</strong> Sam Raimi</p>
+                    <p><strong>Año:</strong> 3 de Mayo de 2002 (EE.UU)</p>
+                    <p><strong>Reparto:</strong> Tobey Maguire (Peter Parker), Kirsten Dunst (Mary Jane), Willem Dafoe (Duende Verde), Rosemary Harris (May Parker)</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalPonyo" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white border-secondary">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ponyo (detalles)</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Sinopsis:</strong> Sosuke, un niño de cinco años, vive en lo más alto de un acantilado que da al mar. Una mañana, mientras juega en una playa rocosa que hay bajo su casa, se encuentra con una ‘pececita’ de colores llamada Ponyo, con la cabeza atascada en un tarro de mermelada. Sosuke la rescata y la guarda en un cubo verde de plástico. Sin embargo, el padre de Ponyo, Fujimoto, que en otro tiempo fue humano y ahora es un hechicero que vive en lo más profundo del océano, la obliga a regresar con él a las profundidades del mar. </p>
+                    <p><strong>Director:</strong> Hayao Miyazaki</p>
+                    <p><strong>Año:</strong> 14 de Agosto de 2009 (EE.UU)</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalElConjuro" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white border-secondary">
+                <div class="modal-header">
+                    <h5 class="modal-title">El Conjuro (detalles)</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Sinopsis:</strong> En 1971, Carolyn y Roger Perron trasladan a su familia a una casa de campo en ruinas de Rhode Island y pronto comienzan a suceder cosas extrañas a su alrededor con un terror de pesadilla cada vez mayor. Desesperada, Carolyn contacta a los notados investigadores paranormales, Ed y Lorraine Warren, para examinar la casa. Lo que los Warren descubren es toda una zona inmersa en una atormentación satánica que ahora apunta a la familia Perron dondequiera que vayan. Para detener este mal, los Warren tendrán que invocar todas sus habilidades y fuerza espiritual para derrotar a esta amenaza espectral en su origen que amenaza con destruir a todos los involucrados. </p>
+                    <p><strong>Director:</strong> James Wan</p>
+                    <p><strong>Año:</strong> 19 de Julio de 2013 (EE.UU)</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="JavaScript/main.js"></script>
+</body>
+</html>
