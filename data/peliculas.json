@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "titulo": "Spiderman",
+    "director": "Sam Raimi",
+    "anio": 2002,
+    "descripcion": "Peter Parker es un tímido estudiante que obtiene poderes arácnidos tras ser mordido por una araña genéticamente modificada.",
+    "imagen": "img/Spider-Man2002Poster.webp"
+  },
+  {
+    "id": 2,
+    "titulo": "Me rompiste el corazón",
+    "director": "Roberto Parra",
+    "anio": 1994,
+    "descripcion": "Narra el romántico y tormentoso amor entre el folclorista chileno Roberto Parra y la emblemática 'Negra Ester'.",
+    "imagen": "img/Me_rompiste_el_corazaon-266947843-large.jpg"
+  },
+  {
+    "id": 3,
+    "titulo": "El libro de la vida",
+    "director": "Jorge R. Gutiérrez",
+    "anio": 2014,
+    "descripcion": "La familia de Manolo quiere que sea torero, pero él desea ser músico. Vivirá una aventura mágica por tres mundos de fantasía.",
+    "imagen": "img/images.jpg"
+  },
+  {
+    "id": 4,
+    "titulo": "Ponyo",
+    "director": "Hayao Miyazaki",
+    "anio": 2008,
+    "descripcion": "Sosuke rescata a una pececita de colores llamada Ponyo. El padre de Ponyo, un hechicero del océano, la obliga a regresar al mar.",
+    "imagen": "img/Ponyo.jpg"
+  },
+  {
+    "id": 5,
+    "titulo": "El Conjuro",
+    "director": "James Wan",
+    "anio": 2013,
+    "descripcion": "Los investigadores paranormales Ed y Lorraine Warren examinan una casa de campo infestada por una presencia demoníaca.",
+    "imagen": "img/El_conjuro.jpg"
+  },
+  {
+    "id": 6,
+    "titulo": "Rápido y Furioso: Reto Tokio",
+    "director": "Justin Lin",
+    "anio": 2006,
+    "descripcion": "Sean Boswell se muda a Tokio y descubre el apasionante y peligroso mundo de las carreras de derrapes (drift).",
+    "imagen": "img/Rapido_y_Furioso.webp"
+  },
+  {
+    "id": 7,
+    "titulo": "Guerra de Novias",
+    "director": "Gary Winick",
+    "anio": 2009,
+    "descripcion": "Dos mejores amigas compiten ferozmente cuando sus bodas son reservadas accidentalmente el mismo día en el Hotel Plaza.",
+    "imagen": "img/Guerra_de_novias.jpg"
+  }
+]

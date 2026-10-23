@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo Películas</title>
+    <title>Catálogo Películas - Absolute Cinema</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    
+    <script src="javascript/app.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
 </head>
-<body class="bg-dark">
+<body class="bg-dark text-white" x-data="cinemaApp">
     
-    
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark border-bottom border-secondary">
         <div class="container">
             <a class="navbar-brand" href="index.html">Absolute Cinema</a>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="catalogo.html">Catálogo</a>
+                    <a class="nav-link active" href="catalogo.html">Catálogo</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="registro.html">Nueva Reseña</a>
@@ -26,94 +29,59 @@
     </nav>
 
     <main class="container my-5">
-        <h2 class="text-white mb-4"> Catálogo completo de peliculas </h2>
+        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+            <h2>Catálogo completo de películas</h2>
+
+            <button @click="mostrarAyuda = !mostrarAyuda" class="btn btn-outline-info btn-sm">
+                <span x-text="mostrarAyuda ? 'Ocultar Ayuda' : '¿Cómo buscar?'"></span>
+            </button>
+        </div>
+
+
+        <div x-show="mostrarAyuda" x-cloak class="alert alert-info bg-dark text-info border-info mb-4">
+            <strong>Instrucciones:</strong> Escribe el nombre de la película o el director en el buscador. La lista se actualizará automáticamente sin recargar la página.
+        </div>
+
+
         <div class="mb-4"> 
-    <input type="text" id="inputBuscador" class="form-control form-control-lg bg-secondary text-white placeholder-glow" placeholder="Buscar película por título...">
-    </div>
-
-<div class="row g-4" id="contenedorPeliculas">
-
-    <!-- Película 1: Spiderman -->
-    <div class="col-md-4 tarjeta-pelicula">
-        <div class="card bg-dark text-white border-secondary h-100">
-            <img src="img/Spider-Man2002Poster.webp" class="card-img-top" alt="Poster Spiderman">
-            <div class="card-body">
-                <h5 class="card-title titulo-pelicula">Spiderman</h5>
-                <p class="card-text">Peter Parker es un tímido estudiante que obtiene poderes arácnidos tras ser mordido por una araña genéticamente modificada.</p>
-            </div>
+            <input type="text" x-model="busqueda" class="form-control form-control-lg bg-secondary text-white placeholder-glow" placeholder="Buscar película por título o director...">
         </div>
-    </div>
 
-    <!-- Película 2: Me Rompiste el corazón -->
-    <div class="col-md-4 tarjeta-pelicula">
-        <div class="card bg-dark text-white border-secondary h-100">
-            <img src="img/Me_rompiste_el_corazaon-266947843-large.jpg" class="card-img-top" alt="Poster Me rompiste el corazón">
-            <div class="card-body">
-                <h5 class="card-title titulo-pelicula">Me rompiste el corazón</h5>
-                <p class="card-text">Narra el romántico y tormentoso amor entre el folclorista chileno Roberto Parra y la emblemática "Negra Ester", explorando la bohemia de los barrios marginales de Valparaíso y Santiago. La película inspiró la obra teatral La Negra Ester.</p>
-            </div>
+
+        <div x-show="cargando" class="text-center my-5">
+            <div class="spinner-border text-warning" role="status"></div>
+            <p class="mt-2">Cargando catálogo desde JSON...</p>
         </div>
-    </div>
 
-    <!-- Película 3: El libro de la vida -->
-    <div class="col-md-4 tarjeta-pelicula">
-        <div class="card bg-dark text-white border-secondary h-100">
-            <img src="img/images.jpg" class="card-img-top" alt="Poster El libro de la vida">
-            <div class="card-body">
-                <h5 class="card-title titulo-pelicula">El libro de la vida</h5>
-                <p class="card-text">La familia de Manolo quiere que sea torero, pero él desea ser músico. El joven vivirá una aventura mágica por tres mundos de fantasía y, durante su odisea, tendrá que decidir si sigue los impulsos de su corazón o el deseo de su familia.</p>
-            </div>
+
+        <div x-show="errorCarga" x-cloak class="alert alert-danger" role="alert">
+            <strong>Error:</strong> No se pudo obtener la información de las películas. Verifique que el archivo JSON esté publicado en la ruta correcta.
         </div>
-    </div>
 
-    <!-- Película 4: Ponyo -->
-    <div class="col-md-4 tarjeta-pelicula">
-        <div class="card bg-dark text-white border-secondary h-100">
-            <img src="img/Ponyo.jpg" class="card-img-top" alt="Poster Ponyo">
-            <div class="card-body">
-                <h5 class="card-title titulo-pelicula">Ponyo</h5>
-                <p class="card-text">Sosuke, un niño de cinco años, vive en lo más alto de un acantilado que da al mar. Una mañana, mientras juega en una playa rocosa que hay bajo su casa, se encuentra con una ‘pececita’ de colores llamada Ponyo, con la cabeza atascada en un tarro de mermelada. Sosuke la rescata y la guarda en un cubo verde de plástico. Sin embargo, el padre de Ponyo, Fujimoto, que en otro tiempo fue humano y ahora es un hechicero que vive en lo más profundo del océano, la obliga a regresar con él a las profundidades del mar.</p>
-            </div>
+
+        <div x-show="!cargando && !errorCarga && peliculasFiltradas.length === 0" x-cloak class="alert alert-warning text-center">
+            No se encontraron películas que coincidan con "<strong><span x-text="busqueda"></span></strong>".
         </div>
-    </div>
 
-    <!-- Película 5: El Conjuro -->
-    <div class="col-md-4 tarjeta-pelicula">
-        <div class="card bg-dark text-white border-secondary h-100">
-            <img src="img/El_conjuro.jpg" class="card-img-top" alt="Poster El Conjuro">
-            <div class="card-body">
-                <h5 class="card-title titulo-pelicula">El Conjuro</h5>
-                <p class="card-text">En 1971, Carolyn y Roger Perron trasladan a su familia a una casa de campo en ruinas de Rhode Island y pronto comienzan a suceder cosas extrañas a su alrededor con un terror de pesadilla cada vez mayor. Desesperada, Carolyn contacta a los notados investigadores paranormales, Ed y Lorraine Warren, para examinar la casa. Lo que los Warren descubren es toda una zona inmersa en una atormentación satánica que ahora apunta a la familia Perron dondequiera que vayan. Para detener este mal, los Warren tendrán que invocar todas sus habilidades y fuerza espiritual para derrotar a esta amenaza espectral en su origen que amenaza con destruir a todos los involucrados.</p>
-            </div>
+
+        <div class="row g-4" x-show="!cargando && !errorCarga">
+            <template x-for="pelicula in peliculasFiltradas" :key="pelicula.id">
+                <div class="col-12 col-sm-6 col-md-4">
+                    <div class="card bg-dark text-white border-secondary h-100">
+                        <img :src="pelicula.imagen" class="card-img-top" :alt="pelicula.titulo">
+                        <div class="card-body d-flex flex-column justify-content-between">
+                            <div>
+                                <h5 class="card-title text-warning" x-text="pelicula.titulo"></h5>
+                                <p class="card-text text-muted small" x-text="'Director: ' + pelicula.director + ' (' + pelicula.anio + ')'"></p>
+                                <p class="card-text" x-text="pelicula.descripcion"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
         </div>
-    </div>
-
-    <!-- Película 6: Rápido y Furioso: Reto Tokio -->
-    <div class="col-md-4 tarjeta-pelicula">
-        <div class="card bg-dark text-white border-secondary h-100">
-            <img src="img/Rapido_y_Furioso.webp" class="card-img-top" alt="Poster Rápido y Furioso: Reto Tokio">
-            <div class="card-body">
-                <h5 class="card-title titulo-pelicula">Rápido y Furioso: Reto Tokio</h5>
-                <p class="card-text"> Cuando el alborotador Sean Boswell tiene que elegir entre ir a la cárcel o irse de Estados Unidos a Tokio, Japón, elige lo último. En el otro lado del mundo, descubre sin darse cuenta el mundo de las carreras de derrapes, un fenómeno importante en Japón, cuando desafía al "Rey del derrape", Takashi a correr y aterriza en deuda con uno de sus socios comerciales, Han Seoul-Oh, quién está buscando a alguien fuera de la influencia de Takashi en quien confiar. </p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Película 7: Guerra de Novias -->
-    <div class="col-md-4 tarjeta-pelicula">
-        <div class="card bg-dark text-white border-secondary h-100">
-            <img src="img/Guerra_de_novias.jpg" class="card-img-top" alt="Poster Guerra de Novias">
-            <div class="card-body">
-                <h5 class="card-title titulo-pelicula">Guerra de Novias</h5>
-                <p class="card-text"> Emma (Anne Hathaway) y Liv (Kate Hudson) son amigas desde que eran pequeñas y desde entonces han planeado con todo lujo de detalles como serían sus bodas. Hay un elemento fundamental: la ceremonia debe celebrarse en el Hotel Plaza, el lugar de moda de las bodas en Nueva York. Las jóvenes tienen 26 años y ya están dispuestas a organizar la boda, sin embargo, un error en la concertación de las fechas hará que ambas coincidan. A partir de entonces, se producirá una disputa entre ellas por ver quién consigue hacer su ceremonia en el lugar soñado. </p>
-            </div>
-        </div>
-    </div>
-
-    </div>
     </main>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="JavaScript/main.js"></script>
 </body>
 </html>
