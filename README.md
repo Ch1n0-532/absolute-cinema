@@ -1,9 +1,9 @@
 Absolute Cinema - Tarea 2 (Sitio Dinámico)
 
-Estudiante: Jairo Llanquileo 
-Proyecto: Absolute Cinema (Plataforma social de películas)  
-URL Pública AWS: http://3.219.68.241 
-URL JSON: http://[TU-ELASTIC-IP]/data/peliculas.json  
+- Estudiante: Jairo Llanquileo 
+- Proyecto: Absolute Cinema (Plataforma social de películas)  
+- URL Pública AWS: http://3.219.68.241 
+- URL JSON: http://[TU-ELASTIC-IP]/data/peliculas.json  
 
 Descripción
 Versión interactiva del frontend de Absolute Cinema. Permite explorar un catálogo de películas cargado dinámicamente desde un archivo JSON, realizar búsquedas en tiempo real y enviar reseñas con validación, sin necesidad de recargar la página.
