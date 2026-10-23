@@ -1,20 +1,29 @@
-Titulo: Absolute Cinema (Lo cambiaré pero fue lo primero que se me ocurrió xd)
+Absolute Cinema - Tarea 2 (Sitio Dinámico)
 
-Este proyecto tiene como inspiración "Letterboxd", ya que se incluye calificaciones y opiniones al catálogo disponible de peliculas.
+Estudiante: Jairo Llanquileo 
+Proyecto: Absolute Cinema (Plataforma social de películas)  
+URL Pública AWS: http://3.219.68.241 
+URL JSON: http://[TU-ELASTIC-IP]/data/peliculas.json  
 
-Funciones principales:
+Descripción
+Versión interactiva del frontend de Absolute Cinema. Permite explorar un catálogo de películas cargado dinámicamente desde un archivo JSON, realizar búsquedas en tiempo real y enviar reseñas con validación, sin necesidad de recargar la página.
 
-1. Página de Inicio (Index.html): Presenta el sitio y las peliculas en tendencia mediante "tarjetas" para poder ver más en detalle el resumen de la película.
-2. Catálogo (catalogo.html): Vista de películas con sistema de búsqueda y filtrado por título.
-3. Reseñas (registro.html): formulario para calificar una película buscando su título y agregando una opinión.
+Tecnologías Utilizadas
+- HTML5, CSS y Bootstrap 
+- Alpine.js: Utilizado para la reactividad, manejo de estado (`cinemaApp`), vinculación de inputs (`x-model`), renderizado de listas dinámicas (`x-for`), visibilidad condicional (`x-show`) y consumo asíncrono con `fetch()`.
 
-Lenguajes utilizados:
+Estructura de Archivos
+- `index.html`: Portada principal y películas en tendencia.
+- `catalogo.html`: Vista de catálogo interactivo con buscador reactivo.
+- `registro.html`: Formulario para añadir reseñas con validación.
+- `css/style.css`: Estilos personalizados para diseño responsivo.
+- `javascript/app.js`: Lógica central de Alpine.js.
+- `data/peliculas.json`: Base de datos estática en formato JSON.
 
-1. HTML para estructura.
-2. CSS para los estilos personalizados (aunque en esta ocasión elegí los mismos de Bootstrap).
-3. JavaScript para las interacciones como "busqueda por título" y "mensajes de alerta para validar/rechazar la opinión".
-4. Bootstrap para los "templates" y componentes de la página.
-5. AWS y Nginx para el servidor web y el despliegue.
+Flujo de Datos y Búsqueda
+1. Al cargar la vista de catálogo, `init()` ejecuta un `fetch()` asincrónico a `./data/peliculas.json`.
+2. Los datos se almacenan en el arreglo `peliculas`.
+3. El getter `peliculasFiltradas` filtra los registros en memoria comparando `busqueda` en minúsculas con los títulos y directores.
 
 IP de Servidor
 
